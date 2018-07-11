@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import Landing from './components/Landing';
 import RoomList from './components/Roomlist';
 import * as firebase from 'firebase';
 
@@ -19,8 +18,6 @@ class App extends Component {
     return (
       <div className="App">
         <header>
-
-          <h1>Bloc Chat</h1>
         </header>
         <main>
         <RoomList

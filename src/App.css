@@ -1,5 +1,6 @@
 .App {
-  text-align: center;
+/*   text-align: center; */
+height: 100%;
 }
 
 .App-logo {
@@ -26,3 +27,97 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.adder {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin-top: 150px;
+  width: 70%; 
+}
+
+.addNewForm {
+  align-items: center;
+  font-size: .75em;
+
+}
+
+.addRoom {
+  background: lightgray;
+  display: flex;
+  flex-direction: column;
+  min-width: 275px;
+  width: 25%;
+  height: 100vh;
+}
+
+button {
+  display: flex;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+
+}
+
+form {
+  background: lightgray;
+}
+
+form li {
+  padding:2px;
+}
+
+form ul {
+  padding: 10px;
+}
+
+h1 {
+  font-size: 30px;
+  padding: 0;
+  padding-left: 30px;
+}
+
+#newButton {
+  margin: 23px;
+}
+
+.newRoomForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.panelTop {
+  display: flex;
+}
+
+.roomlist {
+  background: lightgray;
+  display: flex;
+  flex-direction: column;
+  min-width: 275px;
+  width: 25%;
+  height: 100vh;
+}
+
+.panelTop button{
+  display:flex;
+  flex-shrink: 0;
+}
+
+.panelTop h1{
+  display:flex;
+  flex-shrink: 0;
+}
+
+ul {
+  list-style-type: none;
+  margin: 8px 0;
+  margin-left: 0;
+  padding: 0;
+  padding-left: 30px;
+}
+
