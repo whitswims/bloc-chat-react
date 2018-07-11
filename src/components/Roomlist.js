@@ -5,14 +5,31 @@ class RoomList extends Component {
     super(props);
 
     this.state = {
+      displaySelector: 0,
       inputValue: '',
       rooms: [],
-      newRoom: ''
+      newRoom: '',
+      showSelection: ''
     };
 
+    this.addChatRoom = this.addChatRoom.bind(this);
+    this.cancelNewRoom = this.cancelNewRoom.bind(this);
+    this.displaySelector = this.displaySelector.bind(this);
     this.roomsRef = this.props.firebase.database().ref('rooms');
     this.createRoom = this.createRoom.bind(this);
     this.handleChange = this.handleChange.bind(this);
+  }
+
+  addChatRoom (){
+    this.setState({
+      newRoom: true
+    });
+  }
+
+  cancelNewRoom (){
+    this.setState({
+      newRoom: false
+    })
   }
 
   clearValue (){
@@ -36,6 +53,14 @@ class RoomList extends Component {
         name: this.state.inputValue
       });
     }
+
+    displaySelector (index){
+      if(!this.newRoom){
+      this.setState({showSelection: {index} });
+      }
+      else{
+      }
+    }
   
     handleChange(event) {
       this.setState({
@@ -45,42 +70,47 @@ class RoomList extends Component {
 
 
   render() {
+    const newRoom = this.state.newRoom;
+    let section;
+    if (newRoom === true){
+      section = <section className="adder">
+      <div className="addNewForm">
+      <form onSubmit={this.createRoom}>
+        <ul>
+          <li> 
+        <h3>Create a new Room</h3>
+          </li>
+          <li>
+          Enter a room Name
+          </li>
+          <li>
+        <input type="text" value={this.state.inputValue} onChange={this.handleChange}/>
+        </li>
+        <li>
+        <input type="button" value="Cancel" onClick={this.cancelNewRoom}/> 
+        <input type="submit" value="Create room"/>
+        </li>
+        </ul>
+      </form>
+      </div>
+  </section>;
+    }
     return (
       <section className='container'>
         <section className='roomlist'>
         <div className="panelTop">
           <h1 id="panelHeading">Bloc Chat</h1>
-          <button id="newButton">New Room</button>
+          <button id="newButton" onClick={this.addChatRoom}>New Room</button>
         </div>
             {
               this.state.rooms.map( (room, index) => 
                 <ul className="room"  key={index}> 
-                  <li className="">{room.name}</li>
+                  <li className="" onClick={() =>this.state.displaySelector(index)} >{room.name}</li>
                 </ul>
               )
             }
         </section>
-        <section className="adder">
-          <div className="addNewForm">
-           <form onSubmit={this.createRoom}>
-             <ul>
-              <li> 
-             <h3>Create a new Room</h3>
-              </li>
-              <li>
-               Enter a room Name
-              </li>
-              <li>
-             <input type="text" value={this.state.inputValue} onChange={this.handleChange}/>
-             </li>
-             <li>
-             <input type="button" value="Cancel"/> 
-             <input type="submit" value="Create room"/>
-             </li>
-             </ul>
-           </form>
-          </div>
-      </section>
+        {section}
       </section>
     );
   }
